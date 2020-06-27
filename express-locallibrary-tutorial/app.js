@@ -6,8 +6,26 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+//Set up mongoose connection
+var mongoose = require('mongoose');
+var mongoDB = 'mongodb+srv://devesh:7XQ9yzx8Pudn6zpv@cluster0-1kync.mongodb.net/local_library?retryWrites=true';
+mongoose.connect(mongoDB, { useNewUrlParser: true });
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 var app = express();
+
+
+
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://devesh:<password>@cluster0-1kync.mongodb.net/<dbname>?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
